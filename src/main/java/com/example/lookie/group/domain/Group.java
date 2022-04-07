@@ -1,5 +1,6 @@
 package com.example.lookie.group.domain;
 
+import com.example.lookie.grouprequest.domain.GroupRequest;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -14,7 +15,8 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Group {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "group_id")
     private long id;
 
@@ -32,23 +34,17 @@ public class Group {
 
     public void addGroupRequest(GroupRequest groupRequest) {
         groupRequestList.add(groupRequest);
-        groupRequest.setGroup(this);
     }
 
-    public void addQuestion(Question question) {
-        questionList.add(question);
+    public void addQuestion(Question question){
+        this.questionList.add(question);
     }
-
 
     private static Group createGroup(String name, String description, String ownerEmail) {
         Group group = new Group();
-
         group.name = name;
         group.description = description;
         group.ownerEmail = ownerEmail;
-
         return group;
     }
-
-
 }

@@ -1,6 +1,8 @@
 package com.example.lookie.grouprequest.domain;
 
 
+import com.example.lookie.group.domain.Group;
+import com.example.lookie.group.domain.QuestionAnswer;
 import com.example.lookie.member.domain.Member;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -35,20 +37,33 @@ public class GroupRequest {
     private Department department;
 
     @OneToMany(mappedBy = "group_request",cascade = CascadeType.ALL)
-    private List<RequestQuestion> requestQuestionList = new ArrayList<>();
+    private List<QuestionAnswer> questionAnswerList = new ArrayList<>();
 
     public static GroupRequest createGroupRequest(Member member, Group group,
-                                                  RequestQuestion... requestQuestions,
-                                                  Department department){
+                                                  Department department, QuestionAnswer... questionAnswers){
         GroupRequest groupRequest = new GroupRequest();
-        groupRequest.member=member;
-        groupRequest.group=group;
         groupRequest.requestStatus=RequestStatus.HOLDING;
         groupRequest.department=department;
-        for(RequestQuestion requestQuestion: requestQuestions){
-            groupRequest.requestQuestionList.add(requestQuestion);
+        groupRequest.setGroup(group);
+        groupRequest.setMember(member);
+        for(QuestionAnswer questionAnswer: questionAnswers){
+            groupRequest.addQuestionAnswer(questionAnswer);
         }
         return groupRequest;
+    }
+
+    public void setGroup(Group group){
+        this.group=group;
+        group.addGroupRequest(this);
+    }
+    public void setMember(Member member){
+        this.member=member;
+        member.addGroupRequest(this);
+    }
+
+    public void addQuestionAnswer(QuestionAnswer questionAnswer){
+        this.questionAnswerList.add(questionAnswer);
+        questionAnswer.setGroupRequest(this);
     }
 
     public void changeRequestStatus(RequestStatus requestStatus){

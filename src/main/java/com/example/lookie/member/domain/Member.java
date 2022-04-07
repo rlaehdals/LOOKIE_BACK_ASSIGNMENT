@@ -56,4 +56,8 @@ public class Member {
         member.address=address;
         return member;
     }
+
+    public void addGroupRequest(GroupRequest groupRequest){
+        this.groupRequestList.add(groupRequest);
+    }
 }
