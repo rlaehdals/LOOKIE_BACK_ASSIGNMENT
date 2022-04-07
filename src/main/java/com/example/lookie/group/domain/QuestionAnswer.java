@@ -25,21 +25,26 @@ public class QuestionAnswer {
 
     @Column(name = "question_title")
     private String title;
+    @Column(name = "answer")
     private String answer;
 
+
+    // 연관관계 메서드
+    public void setGroupRequest(GroupRequest groupRequest){
+        this.groupRequest=groupRequest;
+    }
+
+    public void setQuestion(Question question){
+        this.question=question;
+        question.addQuestionAnswer(this);
+    }
+
+    // 생성 메서드
     public static QuestionAnswer createRequestQuestion(Question question, String answer, String title){
         QuestionAnswer requestQuestion = new QuestionAnswer();
         requestQuestion.setQuestion(question);
         requestQuestion.answer = answer;
         requestQuestion.title=title;
         return requestQuestion;
-    }
-
-    public void setGroupRequest(GroupRequest groupRequest){
-        this.groupRequest=groupRequest;
-    }
-    public void setQuestion(Question question){
-        this.question=question;
-        question.addQuestionAnswer(this);
     }
 }

@@ -37,6 +37,14 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<GroupRequest> groupRequestList = new ArrayList<>();
 
+
+    // 연관관계 메서드
+    public void addGroupRequest(GroupRequest groupRequest){
+        this.groupRequestList.add(groupRequest);
+    }
+
+
+    // User 를 생성하는 메서드
     public static Member createUserMember(String email, String password, String name, Address address){
         Member member = new Member();
         member.name=name;
@@ -47,6 +55,8 @@ public class Member {
         return member;
     }
 
+
+    // 동아리 관리자를 생성하는 메서드
     public static Member createAdminMember(String email, String password, String name, Address address){
         Member member = new Member();
         member.name=name;
@@ -55,9 +65,5 @@ public class Member {
         member.role=Role.ROLE_ADMIN;
         member.address=address;
         return member;
-    }
-
-    public void addGroupRequest(GroupRequest groupRequest){
-        this.groupRequestList.add(groupRequest);
     }
 }

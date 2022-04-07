@@ -20,10 +20,13 @@ public class Group {
     @Column(name = "group_id")
     private long id;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "description")
     private String description;
 
+    @Column(name = "owner_email")
     private String ownerEmail;
 
     @OneToMany(mappedBy = "group")
@@ -32,6 +35,8 @@ public class Group {
     @OneToMany(mappedBy = "group")
     private List<Question> questionList = new ArrayList<>();
 
+
+    // 연관관계 메서드 
     public void addGroupRequest(GroupRequest groupRequest) {
         groupRequestList.add(groupRequest);
     }
@@ -40,6 +45,8 @@ public class Group {
         this.questionList.add(question);
     }
 
+
+    //생성 메서드
     private static Group createGroup(String name, String description, String ownerEmail) {
         Group group = new Group();
         group.name = name;

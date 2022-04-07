@@ -39,6 +39,23 @@ public class GroupRequest {
     @OneToMany(mappedBy = "group_request",cascade = CascadeType.ALL)
     private List<QuestionAnswer> questionAnswerList = new ArrayList<>();
 
+
+    // 연관관계 메서드
+    public void setGroup(Group group){
+        this.group=group;
+        group.addGroupRequest(this);
+    }
+
+    public void setMember(Member member){
+        this.member=member;
+        member.addGroupRequest(this);
+    }
+    public void addQuestionAnswer(QuestionAnswer questionAnswer){
+        this.questionAnswerList.add(questionAnswer);
+        questionAnswer.setGroupRequest(this);
+    }
+
+    // 생성 메서드
     public static GroupRequest createGroupRequest(Member member, Group group,
                                                   Department department, QuestionAnswer... questionAnswers){
         GroupRequest groupRequest = new GroupRequest();
@@ -52,20 +69,8 @@ public class GroupRequest {
         return groupRequest;
     }
 
-    public void setGroup(Group group){
-        this.group=group;
-        group.addGroupRequest(this);
-    }
-    public void setMember(Member member){
-        this.member=member;
-        member.addGroupRequest(this);
-    }
 
-    public void addQuestionAnswer(QuestionAnswer questionAnswer){
-        this.questionAnswerList.add(questionAnswer);
-        questionAnswer.setGroupRequest(this);
-    }
-
+    // 비즈니스 로직
     public void changeRequestStatus(RequestStatus requestStatus){
         this.requestStatus=requestStatus;
     }

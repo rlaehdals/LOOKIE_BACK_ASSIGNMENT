@@ -21,11 +21,14 @@ public class Question {
     @JoinColumn(name = "group_id")
     private Group group;
 
+    @Column(name = "title")
     private String title;
 
     @OneToMany(mappedBy = "question")
     private List<QuestionAnswer> questionAnswerList = new ArrayList<>();
 
+
+    // 연관관계 메서드
     public void setGroup(Group group){
         this.group=group;
         group.addQuestion(this);
@@ -35,6 +38,7 @@ public class Question {
         this.questionAnswerList.add(questionAnswer);
     }
 
+    // 생성 메서드
     public static Question createQuestion(Group group, String title) {
         Question question = new Question();
         question.setGroup(group);
