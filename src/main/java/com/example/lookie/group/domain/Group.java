@@ -32,11 +32,11 @@ public class Group {
     @OneToMany(mappedBy = "group")
     private List<GroupRequest> groupRequestList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group",orphanRemoval = true)
     private List<Question> questionList = new ArrayList<>();
 
 
-    // 연관관계 메서드 
+    // 연관관계 메서드
     public void addGroupRequest(GroupRequest groupRequest) {
         groupRequestList.add(groupRequest);
     }

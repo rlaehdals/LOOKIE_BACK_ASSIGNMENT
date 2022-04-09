@@ -34,7 +34,7 @@ public class Member {
     @Embedded
     private Address address;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member",orphanRemoval = true)
     private List<GroupRequest> groupRequestList = new ArrayList<>();
 
 
