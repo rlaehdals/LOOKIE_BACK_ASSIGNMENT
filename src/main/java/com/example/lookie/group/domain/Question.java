@@ -24,7 +24,7 @@ public class Question {
     @Column(name = "title")
     private String title;
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question", orphanRemoval = true)
     private List<QuestionAnswer> questionAnswerList = new ArrayList<>();
 
 

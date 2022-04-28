@@ -29,7 +29,7 @@ public class Group {
     @Column(name = "owner_email")
     private String ownerEmail;
 
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group", orphanRemoval = true)
     private List<GroupRequest> groupRequestList = new ArrayList<>();
 
     @OneToMany(mappedBy = "group",orphanRemoval = true)
