@@ -2,7 +2,7 @@ package com.example.lookie.grouprequest.domain;
 
 
 import com.example.lookie.group.domain.Group;
-import com.example.lookie.group.domain.QuestionAnswer;
+import com.example.lookie.questionAnswer.QuestionAnswer;
 import com.example.lookie.member.domain.Member;
 import lombok.AccessLevel;
 import lombok.Getter;
