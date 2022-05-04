@@ -1,6 +1,7 @@
-package com.example.lookie.group.domain;
+package com.example.lookie.question.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.lookie.group.domain.Group;
+import com.example.lookie.questionAnswer.QuestionAnswer;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,7 +31,6 @@ public class Question {
     @OneToMany(mappedBy = "question", orphanRemoval = true)
     private List<QuestionAnswer> questionAnswerList = new ArrayList<>();
 
-
     // 연관관계 메서드
     public void setGroup(Group group){
         this.group=group;
@@ -47,5 +47,9 @@ public class Question {
         question.setGroup(group);
         question.title = title;
         return question;
+    }
+
+    public void changeTitle(String changeTitle) {
+        this.title=changeTitle;
     }
 }
