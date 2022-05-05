@@ -31,12 +31,6 @@ public class MemberServiceImpl implements MemberService{
         return memberRepository.save(member).getId();
     }
 
-    // 탈퇴
-    @Override
-    public void withdrawal(String email) {
-        memberRepository.deleteByEmail(email);
-    }
-
 
     // 이름 변경
     @Override
@@ -48,8 +42,7 @@ public class MemberServiceImpl implements MemberService{
         member.changeName(name);
     }
 
-
-    // 패스워드 변경
+    // 이름 변경
     @Override
     public void changePassword(String email, String password) {
         Member member = memberRepository.findByEmail(email).orElseThrow(() -> {
@@ -58,6 +51,14 @@ public class MemberServiceImpl implements MemberService{
 
         member.changePassword(password);
     }
+
+    // 탈퇴
+    @Override
+    public void withdrawal(String email) {
+        memberRepository.deleteByEmail(email);
+    }
+
+
 
     // role 따라서 다른 Member 엔티티 생성
     private Member CheckRoleAndCreateMember(String email, String password, Role role, String name, Address address) {
