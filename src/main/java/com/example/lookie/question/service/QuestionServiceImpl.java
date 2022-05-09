@@ -6,9 +6,11 @@ import com.example.lookie.question.domain.Question;
 import com.example.lookie.question.repository.QuestionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
+@Transactional
 public class QuestionServiceImpl implements QuestionService{
 
     private final GroupRepository groupRepository;
