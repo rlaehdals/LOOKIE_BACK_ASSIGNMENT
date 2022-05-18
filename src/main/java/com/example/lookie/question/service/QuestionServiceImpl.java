@@ -6,11 +6,9 @@ import com.example.lookie.question.domain.Question;
 import com.example.lookie.question.repository.QuestionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
-@Transactional
 public class QuestionServiceImpl implements QuestionService{
 
     private final GroupRepository groupRepository;
@@ -19,7 +17,7 @@ public class QuestionServiceImpl implements QuestionService{
     @Override
     public void addQuestion(String ownerEmail, String title) {
         Group group = groupRepository.findByOwnerEmail(ownerEmail).orElseThrow(() -> {
-            throw new IllegalArgumentException("그룹을 만드시지 않았습니다. ");
+            throw new IllegalArgumentException("없는 그룹의 이름입니다.");
         });
 
         Question question = Question.createQuestion(group, title);

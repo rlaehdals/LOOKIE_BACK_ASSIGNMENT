@@ -11,6 +11,4 @@ public interface GroupRepository extends JpaRepository<Group, Long> {
     void deleteByName(String name);
     Optional<Group> findByOwnerEmail(String ownerEmail);
 
-    void deleteByOwnerEmail(String ownerEmail);
-
 }

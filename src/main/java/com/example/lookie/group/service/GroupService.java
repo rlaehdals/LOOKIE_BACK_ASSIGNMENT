@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface GroupService {
 
-    Long createGroup(String name, String description, String ownerEmail);
+    void createGroup(String name, String description, String ownerEmail);
 
     Group findByNameGroup(String name);
 

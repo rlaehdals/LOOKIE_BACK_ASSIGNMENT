@@ -66,14 +66,4 @@ public class Member {
         member.address=address;
         return member;
     }
-
-    // 비즈니스 로직
-
-    public void changeName(String name) {
-        this.name=name;
-    }
-
-    public void changePassword(String password) {
-        this.password=password;
-    }
 }
