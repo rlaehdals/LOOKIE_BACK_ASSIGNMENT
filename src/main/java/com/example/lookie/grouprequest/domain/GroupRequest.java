@@ -36,7 +36,7 @@ public class GroupRequest {
     @Column(name = "department")
     private Department department;
 
-    @OneToMany(mappedBy = "group_request",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "groupRequest",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<QuestionAnswer> questionAnswerList = new ArrayList<>();
 
 

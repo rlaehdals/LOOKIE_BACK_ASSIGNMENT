@@ -21,7 +21,7 @@ public class Question {
     @Column(name = "question_id")
     private Long id;
 
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne(fetch = LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "group_id")
     private Group group;
 
