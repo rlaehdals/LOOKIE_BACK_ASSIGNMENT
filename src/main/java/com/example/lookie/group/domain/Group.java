@@ -12,6 +12,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@Table(name="groups")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Group {
 
