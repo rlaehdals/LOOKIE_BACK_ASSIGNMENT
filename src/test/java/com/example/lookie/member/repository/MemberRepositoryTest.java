@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,8 +25,10 @@ public class MemberRepositoryTest {
         /*
         given
          */
-        Member userMember = Member.createUserMember("abc@abc.com", "1234", "ABC", new Address("서울", "종로", "000006"));
-        Member adminMember = Member.createAdminMember("efg@efg.com", "1234", "EFG", new Address("서울", "종로", "000006"));
+        Member userMember = Member.createUserMember("abc@abc.com", "1234", "ABC",
+                new Address("서울", "종로", "000006"));
+        Member adminMember = Member.createAdminMember("efg@efg.com", "1234", "EFG",
+                new Address("서울", "종로", "000006"));
 
         /*
         when
@@ -46,8 +49,10 @@ public class MemberRepositoryTest {
         /*
         given
          */
-        Member userMember = Member.createUserMember("abc@abc.com", "1234", "ABC", new Address("서울", "종로", "000006"));
-        Member adminMember = Member.createAdminMember("efg.efg.com", "1234", "EFG", new Address("서울", "종로", "000006"));
+        Member userMember = Member.createUserMember("abc@abc.com", "1234", "ABC",
+                new Address("서울", "종로", "000006"));
+        Member adminMember = Member.createAdminMember("efg.efg.com", "1234", "EFG",
+                new Address("서울", "종로", "000006"));
         memberRepository.save(userMember);
         memberRepository.save(adminMember);
 
@@ -60,5 +65,37 @@ public class MemberRepositoryTest {
         then
          */
         assertThat(result.size()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("패스워드 변경 테스트")
+    void changePassword(){
+        Member userMember = Member.createUserMember("abc@abc.com", "1234", "ABC", new Address("서울", "종로", "000006"));
+
+        memberRepository.save(userMember);
+        Member findMember = memberRepository.findByEmail(userMember.getEmail()).get();
+
+        findMember.changePassword("4321");
+
+        Member result = memberRepository.findByEmail(userMember.getEmail()).get();
+
+        assertThat(result.getPassword()).isEqualTo("4321");
+
+    }
+
+    @Test
+    @DisplayName("패스워드 변경 테스트")
+    void changeName(){
+        Member userMember = Member.createUserMember("abc@abc.com", "1234", "ABC", new Address("서울", "종로", "000006"));
+
+        memberRepository.save(userMember);
+        Member findMember = memberRepository.findByEmail(userMember.getEmail()).get();
+
+        findMember.changeName("CBA");
+
+        Member result = memberRepository.findByEmail(userMember.getEmail()).get();
+
+        assertThat(result.getName()).isEqualTo("CBA");
+
     }
 }
