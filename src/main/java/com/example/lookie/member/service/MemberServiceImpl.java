@@ -48,7 +48,6 @@ public class MemberServiceImpl implements MemberService{
         Member member = memberRepository.findByEmail(email).orElseThrow(() -> {
             throw new IllegalArgumentException("유효하지 않은 접근입니다.");
         });
-
         member.changePassword(password);
     }
 
