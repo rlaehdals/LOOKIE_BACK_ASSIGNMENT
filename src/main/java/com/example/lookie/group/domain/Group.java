@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -19,7 +20,7 @@ public class Group {
     @Id
     @GeneratedValue
     @Column(name = "group_id")
-    private long id;
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -62,5 +63,16 @@ public class Group {
 
     public void changeDescription(String description){
         this.description=description;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Group obj1 = (Group) obj;
+        return this.ownerEmail.equals(obj1.getOwnerEmail());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.ownerEmail);
     }
 }

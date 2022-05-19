@@ -3,6 +3,7 @@ package com.example.lookie.member.domain;
 
 import com.example.lookie.grouprequest.domain.GroupRequest;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -75,5 +76,11 @@ public class Member {
 
     public void changePassword(String password) {
         this.password=password;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Member obj1 = (Member) obj;
+        return this.email.equals(obj1.email);
     }
 }
